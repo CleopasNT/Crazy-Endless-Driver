@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 90a0add6d7ccea349bec87a00a2cca21
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - coins: {fileID: 766965004276073702, guid: f1fe303b1040f12458d5d4f8e3aed689, type: 3}
+  - hearts: {fileID: 7238380820736641585, guid: 4eb4e205d5d1035488dcff2627053602, type: 3}
+  - invincible: {fileID: 3019707170072351447, guid: 610737bd2b7299a47af8e60de8512692, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
