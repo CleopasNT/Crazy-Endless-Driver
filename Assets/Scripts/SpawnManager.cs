@@ -11,9 +11,9 @@ public class SpawnManager : MonoBehaviour
     public GameObject invincible;
     public GameObject hearts;
     //Spawns objects in the right range
-    private float zSpawn = -6;
-    private float ySpawn = 0.6f;
-    private float xSpawnRange = 7.5f;
+    [SerializeField] private float zSpawn = -6;
+    [SerializeField] private float ySpawn = 0.6f;
+    [SerializeField] private float xSpawnRange = 7.5f;
     //Time in seconds between each spawn
     private float jumpSpawnTime = 60f;
     private float invicibleSpawnTime = 100.0f;
@@ -75,5 +75,4 @@ public class SpawnManager : MonoBehaviour
         Vector3 spawnPos = new Vector3(randomX, ySpawn, zSpawn);
         Instantiate(hearts, spawnPos, hearts.gameObject.transform.rotation);
     }
-
 }
