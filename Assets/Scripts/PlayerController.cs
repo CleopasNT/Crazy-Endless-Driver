@@ -68,18 +68,8 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(other.gameObject);
         }
-        //For magnet powerup
-        if (other.gameObject.CompareTag("Powerup Magnet"))
-        {
-            Destroy(other.gameObject);
-        }
         //For invicible powerup
         if (other.gameObject.CompareTag("Powerup Invincible"))
-        {
-            Destroy(other.gameObject);
-        }
-        //For coins
-        if (other.gameObject.CompareTag("Coin"))
         {
             Destroy(other.gameObject);
         }

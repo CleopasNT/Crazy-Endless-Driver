@@ -8,9 +8,7 @@ public class SpawnManager : MonoBehaviour
     //Objects to spawn
     public GameObject[] obstacles;
     public GameObject jump;
-    public GameObject magnet;
     public GameObject invincible;
-    public GameObject coins;
     public GameObject hearts;
     //Spawns objects in the right range
     private float zSpawn = -6;
@@ -19,8 +17,6 @@ public class SpawnManager : MonoBehaviour
     //Time in seconds between each spawn
     private float jumpSpawnTime = 60f;
     private float invicibleSpawnTime = 100.0f;
-    private float magnetSpawnTime = 50.0f;
-    private float coinsSpawnTime = 5.0f;
     private float heartsSpawnTime = 40.0f;
     private float obstaclesSpawnTime = 3.0f;
     private float startDelay = 1.0f;
@@ -30,10 +26,8 @@ public class SpawnManager : MonoBehaviour
     {
         InvokeRepeating("SpawnRandomObstacles", startDelay, obstaclesSpawnTime);
         InvokeRepeating("SpawnJump", startDelay, jumpSpawnTime);
-        InvokeRepeating("SpawnCoins", startDelay, coinsSpawnTime);
         InvokeRepeating("SpawnHearts", startDelay, heartsSpawnTime);
         InvokeRepeating("SpawnInvicible", startDelay, invicibleSpawnTime);
-        InvokeRepeating("SpawnMagnet", startDelay, magnetSpawnTime);
     }
 
     // Update is called once per frame
@@ -72,23 +66,6 @@ public class SpawnManager : MonoBehaviour
         Instantiate(invincible, spawnPos, invincible.gameObject.transform.rotation);
     }
 
-    //Spawns magnet in the right range
-    void SpawnMagnet()
-    {
-        float randomX = Random.Range(-xSpawnRange, xSpawnRange);
-
-        Vector3 spawnPos = new Vector3(randomX, ySpawn, zSpawn);
-        Instantiate(magnet, spawnPos, magnet.gameObject.transform.rotation);
-    }
-
-    //Spawns coins in the right range
-    void SpawnCoins()
-    {
-        float randomX = Random.Range(-xSpawnRange, xSpawnRange);
-
-        Vector3 spawnPos = new Vector3(randomX, ySpawn, zSpawn);
-        Instantiate(coins, spawnPos, coins.gameObject.transform.rotation);
-    }
 
     //Spawns hearts in the right range
     void SpawnHearts()
