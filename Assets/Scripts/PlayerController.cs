@@ -8,7 +8,8 @@ public class PlayerController : MonoBehaviour
 
     public float jumpForce = 12000;
     public float xRange = 8;
-    private float turnSpeed = 12000.0f;
+    public float yRange = 0.54f;
+    public float turnSpeed = 12000;
     private Rigidbody playerRb;
     private float gravityModifier = 1;
     private bool isOnGround = true;
@@ -32,6 +33,11 @@ public class PlayerController : MonoBehaviour
         if (transform.position.x > xRange)
         {
             transform.position = new Vector3(xRange, transform.position.y, transform.position.z);
+        }
+
+        if (transform.position.y < yRange)
+        {
+            transform.position = new Vector3(transform.position.x, yRange, transform.position.z);
         }
 
         //This moves the player left and right based on input
