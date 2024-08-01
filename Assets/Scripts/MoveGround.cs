@@ -9,7 +9,7 @@ public class MoveGround : MonoBehaviour
     private Vector3 startPos;
     private float repeatWidth;
     public float speed = 5.0f;
-    public float zDestroy = -20;
+    public float xDestroy = -20;
     
     // Start is called before the first frame update
     void Start()
@@ -23,14 +23,14 @@ public class MoveGround : MonoBehaviour
     void Update()
     {
         //move road
-        transform.Translate(Vector3.back * speed * Time.deltaTime);
+        transform.Translate(Vector3.right * speed * Time.deltaTime);
         //repeats road
-        if (transform.position.z < startPos.z - repeatWidth)
+        if (transform.position.x < startPos.x - repeatWidth)
         {
             transform.position = startPos;
         }
         //Destroys road if it goes below the screen
-        if (transform.position.z < zDestroy)
+        if (transform.position.x < xDestroy)
         {
             Destroy(gameObject);
         }
