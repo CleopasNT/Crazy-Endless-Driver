@@ -6,15 +6,15 @@ using UnityEngine;
 public class MoveGround : MonoBehaviour
 {
 
+    // Variables
     private Vector3 startPos;
     private float repeatWidth;
     public float speed = 5.0f;
-    public float xDestroy = -20;
-    
+    public float zDestroy = -30;
+
     // Start is called before the first frame update
     void Start()
     {
-        //repeats background
         startPos = transform.position;
         repeatWidth = GetComponent<BoxCollider>().size.x / 2;
     }
@@ -22,15 +22,9 @@ public class MoveGround : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //move road
-        transform.Translate(Vector3.right * speed * Time.deltaTime);
-        //repeats road
-        if (transform.position.x < startPos.x - repeatWidth)
-        {
-            transform.position = startPos;
-        }
-        //Destroys road if it goes below the screen
-        if (transform.position.x < xDestroy)
+        transform.Translate(Vector3.back * speed * Time.deltaTime, Space.World);
+
+        if (transform.position.z < zDestroy)
         {
             Destroy(gameObject);
         }
