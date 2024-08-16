@@ -4,9 +4,9 @@
 QualitySettings:
   m_ObjectHideFlags: 0
   serializedVersion: 5
-  m_CurrentQuality: 1
+  m_CurrentQuality: 0
   m_QualitySettings:
-  - serializedVersion: 4
+  - serializedVersion: 3
     name: Mobile
     pixelLightCount: 2
     shadows: 2
@@ -28,11 +28,8 @@ QualitySettings:
     realtimeReflectionProbes: 0
     billboardsFaceCameraPosition: 1
     useLegacyDetailDistribution: 1
-    adaptiveVsync: 0
     vSyncCount: 0
     realtimeGICPUUsage: 100
-    adaptiveVsyncExtraA: 0
-    adaptiveVsyncExtraB: 0
     lodBias: 1
     maximumLODLevel: 0
     enableLODCrossFade: 1
@@ -59,7 +56,9 @@ QualitySettings:
     terrainMaxTrees: 50
     excludedTargetPlatforms:
     - Standalone
-  - serializedVersion: 4
+    - Server
+    - Windows Store Apps
+  - serializedVersion: 3
     name: PC
     pixelLightCount: 2
     shadows: 2
@@ -81,11 +80,8 @@ QualitySettings:
     realtimeReflectionProbes: 0
     billboardsFaceCameraPosition: 1
     useLegacyDetailDistribution: 1
-    adaptiveVsync: 0
     vSyncCount: 0
     realtimeGICPUUsage: 100
-    adaptiveVsyncExtraA: 0
-    adaptiveVsyncExtraB: 0
     lodBias: 2
     maximumLODLevel: 0
     enableLODCrossFade: 1
