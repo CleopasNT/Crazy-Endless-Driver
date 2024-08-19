@@ -11,7 +11,7 @@ public class SpawnManager : MonoBehaviour
     public GameObject invincible;
     public GameObject hearts;
     //Spawns objects in the right range
-    [SerializeField] private float zSpawn = -6;
+    [SerializeField] private float zSpawn = 68;
     [SerializeField] private float ySpawn = 0.6f;
     [SerializeField] private float xSpawnRange = 7.5f;
     //Time in seconds between each spawn

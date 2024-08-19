@@ -35,10 +35,10 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(xRange, transform.position.y, transform.position.z);
         }
 
-        if (transform.position.y < yRange)
+        /*if (transform.position.y < yRange)
         {
             transform.position = new Vector3(transform.position.x, yRange, transform.position.z);
-        }
+        }*/
 
         //This moves the player left and right based on input
         float HorizontalInput = Input.GetAxis("Horizontal");
