@@ -164,7 +164,7 @@ MonoBehaviour:
   jump: {fileID: 1504421727819480441, guid: cc90b8d2f655607439479561f2a530d1, type: 3}
   invincible: {fileID: 3019707170072351447, guid: 610737bd2b7299a47af8e60de8512692, type: 3}
   hearts: {fileID: 7238380820736641585, guid: 4eb4e205d5d1035488dcff2627053602, type: 3}
-  zSpawn: -6
+  zSpawn: 40
   ySpawn: 0.6
   xSpawnRange: 7.5
 --- !u!4 &469458499
@@ -464,7 +464,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 8
   m_CollisionDetection: 0
 --- !u!114 &903095532
 MonoBehaviour:
@@ -720,7 +720,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2060595312303209830, guid: 8e5844f5f3103d74e86a8f8fef1db4a5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 23.6
+      value: 19.6
       objectReference: {fileID: 0}
     - target: {fileID: 2060595312303209830, guid: 8e5844f5f3103d74e86a8f8fef1db4a5, type: 3}
       propertyPath: m_LocalRotation.w
