@@ -10,6 +10,7 @@ public class SpawnManager : MonoBehaviour
     public GameObject jump;
     public GameObject invincible;
     public GameObject hearts;
+    public GameObject fireball;
     //Spawns objects in the right range
     [SerializeField] private float zSpawn = 40;
     [SerializeField] private float ySpawn = 0.6f;
@@ -18,6 +19,7 @@ public class SpawnManager : MonoBehaviour
     private float jumpSpawnTime = 60f;
     private float invicibleSpawnTime = 100.0f;
     private float heartsSpawnTime = 40.0f;
+    private float fireballSpawnTime = 20;
     private float obstaclesSpawnTime = 3.0f;
     private float startDelay = 1.0f;
 
@@ -28,6 +30,7 @@ public class SpawnManager : MonoBehaviour
         InvokeRepeating("SpawnJump", startDelay, jumpSpawnTime);
         InvokeRepeating("SpawnHearts", startDelay, heartsSpawnTime);
         InvokeRepeating("SpawnInvicible", startDelay, invicibleSpawnTime);
+        InvokeRepeating("SpawnFireball", startDelay, fireballSpawnTime);
     }
 
     // Update is called once per frame
@@ -55,6 +58,15 @@ public class SpawnManager : MonoBehaviour
         Vector3 spawnPos = new Vector3(randomX, ySpawn, zSpawn);
 
         Instantiate(jump, spawnPos, jump.gameObject.transform.rotation);
+    }
+
+    //Spawns fireball powerup in the right range
+    void SpawnFireball()
+    {
+        float randomX = Random.Range(-xSpawnRange, xSpawnRange);
+
+        Vector3 spawnPos = new Vector3(randomX, ySpawn, zSpawn);
+        Instantiate(fireball, spawnPos, fireball.gameObject.transform.rotation);
     }
 
     //Spawns invicible in the right range
