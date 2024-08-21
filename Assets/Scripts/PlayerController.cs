@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -13,17 +15,26 @@ public class PlayerController : MonoBehaviour
     private Rigidbody playerRb;
     private float gravityModifier = 1;
     private bool isOnGround = true;
+    //Player Input variables
+    public Button leftButton;
+    public Button rightButton;
+    public TextMeshProUGUI leftButtonText;
+    public TextMeshProUGUI rightButtonText;
 
     // Start is called before the first frame update
     void Start()
     {
         playerRb = GetComponent<Rigidbody>();
         Physics.gravity *= gravityModifier;
+        //Player Input
+        leftButton.onClick.AddListener(MoveLeft);
+        rightButton.onClick.AddListener(MoveRight);
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Keeps the player in bounds
         if (transform.position.x < -xRange)
         {
             transform.position = new Vector3(-xRange, transform.position.y, transform.position.z);
@@ -33,10 +44,6 @@ public class PlayerController : MonoBehaviour
         {
             transform.position = new Vector3(xRange, transform.position.y, transform.position.z);
         }
-
-        //This moves the player left and right based on input
-        float HorizontalInput = Input.GetAxis("Horizontal");
-        playerRb.AddForce(Vector3.right * turnSpeed * HorizontalInput);
 
         //This makes the player only jump once.
         if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
@@ -81,5 +88,15 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(other.gameObject);
         }
+    }
+
+    private void MoveLeft()
+    {
+        playerRb.velocity = new Vector3(-turnSpeed, playerRb.velocity.y, playerRb.velocity.z);
+    }
+
+    void MoveRight()
+    {
+        playerRb.velocity = new Vector3(turnSpeed, playerRb.velocity.y, playerRb.velocity.z);
     }
 }
