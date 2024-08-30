@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI leftButtonText;
     public TextMeshProUGUI rightButtonText;
 
+    public bool gameOver = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,11 +55,14 @@ public class PlayerController : MonoBehaviour
     //For obstacles
     private void OnCollisionEnter(Collision collision)
     {
-        isOnGround = true;
-
-        if (collision.gameObject.CompareTag("Obstacle"))
+        if (collision.gameObject.CompareTag("Ground"))
         {
-            Debug.Log("Obstacle collided with the player. Should reduce player health.");
+            isOnGround = true;
+        }
+        else if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            gameOver = true;
+            Debug.Log("Game Over!");
         }
     }
 
