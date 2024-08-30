@@ -163,7 +163,6 @@ MonoBehaviour:
   - {fileID: 7390238182136101470, guid: 3173c7c5609668d4cb5cd500363e54f7, type: 3}
   jump: {fileID: 1504421727819480441, guid: cc90b8d2f655607439479561f2a530d1, type: 3}
   invincible: {fileID: 3019707170072351447, guid: 610737bd2b7299a47af8e60de8512692, type: 3}
-  hearts: {fileID: 7238380820736641585, guid: 4eb4e205d5d1035488dcff2627053602, type: 3}
   fireball: {fileID: 5082869063974288236, guid: 9332eb2a172d3f6498469bf90503d44d, type: 3}
   zSpawn: 40
   ySpawn: 0.6
@@ -481,7 +480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38bfe8e305ca15349af8ddaa5132287e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 12000
+  jumpForce: 15000
   xRange: 8
   yRange: 0.54
   turnSpeed: 7.5

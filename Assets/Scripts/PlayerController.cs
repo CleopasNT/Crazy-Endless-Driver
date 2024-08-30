@@ -1,10 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.UI;
 using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -14,7 +10,7 @@ public class PlayerController : MonoBehaviour
     public float yRange = 0.54f;
     public float turnSpeed = 12000;
     private Rigidbody playerRb;
-    private float gravityModifier = 1;
+    private readonly float gravityModifier = 1;
     private bool isOnGround = true;
     //Player Input variables
     public Button leftButton;
@@ -73,11 +69,7 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(other.gameObject);
         }
-        //For heart
-        if (other.gameObject.CompareTag("Heart"))
-        {
-            Destroy(other.gameObject);
-        }
+
         //For invicible powerup
         if (other.gameObject.CompareTag("Powerup Invincible"))
         {

@@ -24,7 +24,7 @@ public class MoveGround : MonoBehaviour
     void Update()
     {
 
-        transform.Translate(Vector3.back * speed * Time.deltaTime, Space.World);
+        transform.Translate(Vector3.back * Time.deltaTime * speed, Space.World);
 
         RepeatWidth();
 

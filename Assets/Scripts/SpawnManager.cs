@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
@@ -9,34 +7,25 @@ public class SpawnManager : MonoBehaviour
     public GameObject[] obstacles;
     public GameObject jump;
     public GameObject invincible;
-    public GameObject hearts;
     public GameObject fireball;
     //Spawns objects in the right range
     [SerializeField] private float zSpawn = 40;
     [SerializeField] private float ySpawn = 0.6f;
     [SerializeField] private float xSpawnRange = 7.5f;
     //Time in seconds between each spawn
-    private float jumpSpawnTime = 60f;
-    private float invicibleSpawnTime = 100.0f;
-    private float heartsSpawnTime = 40.0f;
-    private float fireballSpawnTime = 20;
-    private float obstaclesSpawnTime = 3.0f;
-    private float startDelay = 1.0f;
+    private readonly float jumpSpawnTime = 60f;
+    private readonly float invicibleSpawnTime = 100.0f;
+    private readonly float fireballSpawnTime = 20;
+    private readonly float obstaclesSpawnTime = 2.2f;
+    private readonly float startDelay = 1.0f;
 
     // Start is called before the first frame update
     void Start()
     {
         InvokeRepeating("SpawnRandomObstacles", startDelay, obstaclesSpawnTime);
         InvokeRepeating("SpawnJump", startDelay, jumpSpawnTime);
-        InvokeRepeating("SpawnHearts", startDelay, heartsSpawnTime);
         InvokeRepeating("SpawnInvicible", startDelay, invicibleSpawnTime);
         InvokeRepeating("SpawnFireball", startDelay, fireballSpawnTime);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     //Spawns obstacles in the right range
@@ -76,15 +65,5 @@ public class SpawnManager : MonoBehaviour
 
         Vector3 spawnPos = new Vector3(randomX, ySpawn, zSpawn);
         Instantiate(invincible, spawnPos, invincible.gameObject.transform.rotation);
-    }
-
-
-    //Spawns hearts in the right range
-    void SpawnHearts()
-    {
-        float randomX = Random.Range(-xSpawnRange, xSpawnRange);
-
-        Vector3 spawnPos = new Vector3(randomX, ySpawn, zSpawn);
-        Instantiate(hearts, spawnPos, hearts.gameObject.transform.rotation);
     }
 }
