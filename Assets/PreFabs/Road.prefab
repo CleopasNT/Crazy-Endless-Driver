@@ -143,3 +143,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   zDestroy: -70
+  isDestroyed: 0
+  playerControllerScript: {fileID: 0}

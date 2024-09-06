@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public float xRange = 8;
     public float yRange = 0.54f;
     public float turnSpeed = 12000;
+    private int lives = 2; //total lives is 2, but last life is -1, so total is 3
     private Rigidbody playerRb;
     private readonly float gravityModifier = 1;
     private bool isOnGround = true;
@@ -20,7 +21,7 @@ public class PlayerController : MonoBehaviour
     public Button rightButton;
     public TextMeshProUGUI leftButtonText;
     public TextMeshProUGUI rightButtonText;
-
+    //Game Over
     public bool gameOver = false;
 
     // Start is called before the first frame update
@@ -58,14 +59,21 @@ public class PlayerController : MonoBehaviour
     //For obstacles
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (lives > 0)
         {
-            isOnGround = true;
+            gameOver = false;
         }
-        else if (collision.gameObject.CompareTag("Obstacle"))
+        else if (lives == 0)
         {
             gameOver = true;
-            Debug.Log("Game Over!");
+        }
+
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            lives -= 1;
+
+            Debug.Log("Player collided with obstacle. Should reduce player health by 1. Current health: " + lives);
+            isOnGround = true;
         }
     }
 

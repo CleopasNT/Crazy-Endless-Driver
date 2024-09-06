@@ -13,6 +13,9 @@ public class MoveGround : MonoBehaviour
     public float zDestroy = -30;
     public bool isDestroyed = false;
 
+    // Reference to PlayerController.cs
+    public PlayerController playerControllerScript;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,10 +26,12 @@ public class MoveGround : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        transform.Translate(Vector3.back * Time.deltaTime * speed, Space.World);
-
-        RepeatWidth();
+        // Check if gameOver is false before calling RepeatWidth and moving the ground
+        if (!playerControllerScript.gameOver)
+        {
+            transform.Translate(Vector3.back * Time.deltaTime * speed, Space.World);
+            RepeatWidth();
+        }
 
         if (transform.position.z < zDestroy)
         {

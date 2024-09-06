@@ -1473,6 +1473,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3076237763465406744, guid: 8e5844f5f3103d74e86a8f8fef1db4a5, type: 3}
+      propertyPath: playerControllerScript
+      value: 
+      objectReference: {fileID: 903095532}
     - target: {fileID: 8911650604934449541, guid: 8e5844f5f3103d74e86a8f8fef1db4a5, type: 3}
       propertyPath: m_Name
       value: Road
@@ -1490,6 +1494,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 727094431}
     m_Modifications:
+    - target: {fileID: 3135091807857678950, guid: ea54347837f834747b25088067e55669, type: 3}
+      propertyPath: playerControllerScript
+      value: 
+      objectReference: {fileID: 903095532}
     - target: {fileID: 4846937537310157870, guid: ea54347837f834747b25088067e55669, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10
@@ -1701,6 +1709,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4243284919792223503, guid: bcf4e04b3ccd4154881ecad3a83c85f8, type: 3}
+      propertyPath: playerControllerScript
+      value: 
+      objectReference: {fileID: 903095532}
     - target: {fileID: 5831737298746609141, guid: bcf4e04b3ccd4154881ecad3a83c85f8, type: 3}
       propertyPath: m_Name
       value: LeftBackground

@@ -145,6 +145,7 @@ MonoBehaviour:
   speed: 10
   zDestroy: -70
   isDestroyed: 0
+  playerControllerScript: {fileID: 0}
 --- !u!95 &6978576089742087980
 Animator:
   serializedVersion: 5
