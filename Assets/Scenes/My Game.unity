@@ -162,6 +162,7 @@ MonoBehaviour:
   - {fileID: 6899389520285613206, guid: bb34f695d05b759448ff993626d17990, type: 3}
   - {fileID: 7390238182136101470, guid: 3173c7c5609668d4cb5cd500363e54f7, type: 3}
   jump: {fileID: 1504421727819480441, guid: cc90b8d2f655607439479561f2a530d1, type: 3}
+  heart: {fileID: 7238380820736641585, guid: 4eb4e205d5d1035488dcff2627053602, type: 3}
   invincible: {fileID: 3019707170072351447, guid: 610737bd2b7299a47af8e60de8512692, type: 3}
   fireball: {fileID: 5082869063974288236, guid: 9332eb2a172d3f6498469bf90503d44d, type: 3}
   zSpawn: 40
@@ -488,6 +489,7 @@ MonoBehaviour:
   rightButton: {fileID: 1953589795}
   leftButtonText: {fileID: 2091323706}
   rightButtonText: {fileID: 1920494899}
+  gameOver: 0
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,6 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
@@ -6,6 +9,7 @@ public class SpawnManager : MonoBehaviour
     //Objects to spawn
     public GameObject[] obstacles;
     public GameObject jump;
+    public GameObject heart;
     public GameObject invincible;
     public GameObject fireball;
     //Spawns objects in the right range
@@ -15,6 +19,7 @@ public class SpawnManager : MonoBehaviour
     //Time in seconds between each spawn
     private readonly float jumpSpawnTime = 60f;
     private readonly float invicibleSpawnTime = 100.0f;
+    private readonly float heartSpawnTime = 40.0f;
     private readonly float fireballSpawnTime = 20;
     private readonly float obstaclesSpawnTime = 2.2f;
     private readonly float startDelay = 1.0f;
@@ -24,6 +29,7 @@ public class SpawnManager : MonoBehaviour
     {
         InvokeRepeating("SpawnRandomObstacles", startDelay, obstaclesSpawnTime);
         InvokeRepeating("SpawnJump", startDelay, jumpSpawnTime);
+        InvokeRepeating("SpawnHearts", startDelay, heartSpawnTime);
         InvokeRepeating("SpawnInvicible", startDelay, invicibleSpawnTime);
         InvokeRepeating("SpawnFireball", startDelay, fireballSpawnTime);
     }
@@ -65,5 +71,14 @@ public class SpawnManager : MonoBehaviour
 
         Vector3 spawnPos = new Vector3(randomX, ySpawn, zSpawn);
         Instantiate(invincible, spawnPos, invincible.gameObject.transform.rotation);
+    }
+
+    //Spawns hearts in the right range
+    void SpawnHearts()
+    {
+        float randomX = Random.Range(-xSpawnRange, xSpawnRange);
+
+        Vector3 spawnPos = new Vector3(randomX, ySpawn, zSpawn);
+        Instantiate(heart, spawnPos, heart.gameObject.transform.rotation);
     }
 }

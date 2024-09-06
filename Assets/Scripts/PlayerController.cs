@@ -1,3 +1,6 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEditor;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -71,6 +74,12 @@ public class PlayerController : MonoBehaviour
     {
         //For jump powerup
         if (other.gameObject.CompareTag("Powerup Jump"))
+        {
+            Destroy(other.gameObject);
+        }
+
+        //For heart
+        if (other.gameObject.CompareTag("Heart"))
         {
             Destroy(other.gameObject);
         }
