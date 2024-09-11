@@ -75,7 +75,8 @@ public class PlayerController : MonoBehaviour
             lives -= 1;
 
             Debug.Log("Player collided with obstacle. Should reduce player health by 1. Current health: " + lives);
-            isOnGround = true;
+
+            playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
     }
 
