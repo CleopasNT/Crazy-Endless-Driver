@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     {
         playerRb = GetComponent<Rigidbody>();
         Physics.gravity *= gravityModifier;
+
         //Player Input
         leftButton.onClick.AddListener(MoveLeft);
         rightButton.onClick.AddListener(MoveRight);
@@ -48,8 +49,8 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(xRange, transform.position.y, transform.position.z);
         }
 
-        //This makes the player only jump once.
-        if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
+        //This makes the player only jump once and not after gameover.
+        if (!gameOver && Input.GetKeyDown(KeyCode.Space) && isOnGround)
         {
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isOnGround = false;
@@ -63,9 +64,10 @@ public class PlayerController : MonoBehaviour
         {
             gameOver = false;
         }
-        else if (lives == 0)
+        else if (lives <= 0)
         {
             gameOver = true;
+            RemoveListeners();
         }
 
         if (collision.gameObject.CompareTag("Obstacle"))
@@ -107,11 +109,23 @@ public class PlayerController : MonoBehaviour
 
     public void MoveLeft()
     {
-        playerRb.velocity = new Vector3(-turnSpeed, playerRb.velocity.y, playerRb.velocity.z);
+        if (!gameOver)
+        {
+            playerRb.velocity = new Vector3(-turnSpeed, playerRb.velocity.y, playerRb.velocity.z);
+        }
     }
 
     public void MoveRight()
     {
-        playerRb.velocity = new Vector3(turnSpeed, playerRb.velocity.y, playerRb.velocity.z);
+        if (!gameOver)
+        {
+            playerRb.velocity = new Vector3(turnSpeed, playerRb.velocity.y, playerRb.velocity.z);
+        }
+    }
+
+    private void RemoveListeners()
+    {
+        leftButton.onClick.RemoveListener(MoveLeft);
+        rightButton.onClick.RemoveListener(MoveRight);
     }
 }

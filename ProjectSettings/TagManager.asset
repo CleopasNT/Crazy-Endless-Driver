@@ -12,6 +12,7 @@ TagManager:
   - Heart
   - Ground
   - Powerup Fireball
+  - Event System
   layers:
   - Default
   - TransparentFX
