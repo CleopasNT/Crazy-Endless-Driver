@@ -92,6 +92,12 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Heart"))
         {
             Destroy(other.gameObject);
+
+            if (lives < 2)
+            {
+                lives += 1;
+                Debug.Log("Player collided with heart. Should increase player health by 1. Current health: " + lives);
+            }
         }
 
         //For invicible powerup
