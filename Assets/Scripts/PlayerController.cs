@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-
     public float jumpForce = 12000;
     public float xRange = 8;
     public float yRange = 0.54f;
@@ -19,8 +18,10 @@ public class PlayerController : MonoBehaviour
     //Player Input variables
     public Button leftButton;
     public Button rightButton;
+    public Button jumpButton;
     public TextMeshProUGUI leftButtonText;
     public TextMeshProUGUI rightButtonText;
+    public TextMeshProUGUI jumpButtonText;
     //Game Over
     public bool gameOver = false;
 
@@ -31,8 +32,9 @@ public class PlayerController : MonoBehaviour
         Physics.gravity *= gravityModifier;
 
         //Player Input
-        leftButton.onClick.AddListener(MoveLeft);
-        rightButton.onClick.AddListener(MoveRight);
+        leftButton.onClick.AddListener(() => StartCoroutine(ButtonCooldown(MoveLeft, leftButton)));
+        rightButton.onClick.AddListener(() => StartCoroutine(ButtonCooldown(MoveRight, rightButton)));
+        jumpButton.onClick.AddListener(() => StartCoroutine(ButtonCooldown(Jump, jumpButton)));
     }
 
     // Update is called once per frame
@@ -47,13 +49,6 @@ public class PlayerController : MonoBehaviour
         if (transform.position.x > xRange)
         {
             transform.position = new Vector3(xRange, transform.position.y, transform.position.z);
-        }
-
-        //This makes the player only jump once and not after gameover.
-        if (!gameOver && Input.GetKeyDown(KeyCode.Space) && isOnGround)
-        {
-            playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            isOnGround = false;
         }
     }
 
@@ -130,9 +125,27 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void Jump()
+    {
+        if (!gameOver && isOnGround)
+        {
+            playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            isOnGround = false;
+        }
+    }
+
+    private IEnumerator ButtonCooldown(System.Action action, Button button)
+    {
+        button.interactable = false;
+        action();
+        yield return new WaitForSeconds(0.5f); // Adjust the cooldown duration as needed
+        button.interactable = true;
+    }
+
     private void RemoveListeners()
     {
         leftButton.onClick.RemoveListener(MoveLeft);
         rightButton.onClick.RemoveListener(MoveRight);
+        jumpButton.onClick.RemoveListener(Jump);
     }
 }
