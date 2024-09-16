@@ -50,6 +50,12 @@ public class PlayerController : MonoBehaviour
         {
             transform.position = new Vector3(xRange, transform.position.y, transform.position.z);
         }
+
+        // Check if the player is on the ground
+        if (transform.position.y <= yRange)
+        {
+            isOnGround = true;
+        }
     }
 
     //For obstacles
