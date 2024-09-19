@@ -484,7 +484,7 @@ MonoBehaviour:
   jumpForce: 15000
   xRange: 8
   yRange: 0.54
-  turnSpeed: 10000
+  turnSpeed: 15000
   isOnGround: 1
   gameOver: 0
 --- !u!1 &963194225

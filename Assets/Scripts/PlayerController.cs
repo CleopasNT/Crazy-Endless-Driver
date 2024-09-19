@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     public float yRange = 0.54f;
     public float turnSpeed = 12000;
     private int lives = 3;
-    private float powerupTimer = 0;
+    private bool jumpPowerupActive = false;
     private Rigidbody playerRb;
     private readonly float gravityModifier = 1;
     public bool isOnGround = true;
@@ -57,7 +57,14 @@ public class PlayerController : MonoBehaviour
         //This makes the player only jump once and when game is not over.
         if (Input.GetKeyDown(KeyCode.Space) && isOnGround && !gameOver)
         {
-            playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            if (jumpPowerupActive)
+            {
+                Jump(2); // Jump with powerup multiplier
+            }
+            else
+            {
+                Jump(1); // Normal jump
+            }
             isOnGround = false;
         }
     }
@@ -90,15 +97,11 @@ public class PlayerController : MonoBehaviour
         //For jump powerup
         if (other.gameObject.CompareTag("Powerup Jump"))
         {
-            Debug.Log("Powerup collected!");
             Destroy(other.gameObject);
 
-            if (Input.GetKeyDown(KeyCode.Space) && !gameOver && isOnGround)
-            {
-                playerRb.AddForce(Vector3.up * jumpForce * 2, ForceMode.Impulse);
+            jumpPowerupActive = true;
 
-                isOnGround = false;
-            }
+            StartCoroutine(ApplyPowerup("Jump", 15, 2));
         }
 
         //For heart
@@ -123,6 +126,44 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Powerup Fireball"))
         {
             Destroy(other.gameObject);
+        }
+    }
+
+    void Jump(int multiplier)
+    {
+        playerRb.AddForce(Vector3.up * jumpForce * multiplier, ForceMode.Impulse);
+    }
+
+    private IEnumerator ApplyPowerup(string powerupType, float duration, float multiplier = 1)
+    {
+        switch (powerupType)
+        {
+            case "Jump":
+                jumpPowerupActive = true;
+                break;
+            case "Invincible":
+                // Activate invincibility logic
+                break;
+            case "Fireball":
+                // Activate fireball powerup logic
+                break;
+            default:
+                yield break;
+        }
+
+        yield return new WaitForSeconds(duration);
+
+        switch (powerupType)
+        {
+            case "Jump":
+                jumpPowerupActive = false;
+                break;
+            case "Invincible":
+                // Deactivate invincibility logic
+                break;
+            case "Fireball":
+                // Deactivate fireball powerup logic
+                break;
         }
     }
 }
