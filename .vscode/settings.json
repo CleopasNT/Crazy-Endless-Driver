@@ -56,5 +56,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Crazy-Endless-Driver.sln"
+    "dotnet.defaultSolution": "Crazy-Endless-Driver.sln",
+    "dotnet.preferCSharpExtension": true
 }

@@ -11,17 +11,11 @@ public class PlayerController : MonoBehaviour
     public float xRange = 8;
     public float yRange = 0.54f;
     public float turnSpeed = 12000;
-    private int lives = 2; //total lives is 2, but last life is -1, so total is 3
+    private int lives = 3;
+    private float powerupTimer = 0;
     private Rigidbody playerRb;
     private readonly float gravityModifier = 1;
-    private bool isOnGround = true;
-    //Player Input variables
-    public Button leftButton;
-    public Button rightButton;
-    public Button jumpButton;
-    public TextMeshProUGUI leftButtonText;
-    public TextMeshProUGUI rightButtonText;
-    public TextMeshProUGUI jumpButtonText;
+    public bool isOnGround = true;
     //Game Over
     public bool gameOver = false;
 
@@ -30,11 +24,6 @@ public class PlayerController : MonoBehaviour
     {
         playerRb = GetComponent<Rigidbody>();
         Physics.gravity *= gravityModifier;
-
-        //Player Input
-        leftButton.onClick.AddListener(() => StartCoroutine(ButtonCooldown(MoveLeft, leftButton)));
-        rightButton.onClick.AddListener(() => StartCoroutine(ButtonCooldown(MoveRight, rightButton)));
-        jumpButton.onClick.AddListener(() => StartCoroutine(ButtonCooldown(Jump, jumpButton)));
     }
 
     // Update is called once per frame
@@ -56,6 +45,21 @@ public class PlayerController : MonoBehaviour
         {
             isOnGround = true;
         }
+
+        //This moves the player left and right based on input
+        float HorizontalInput = Input.GetAxis("Horizontal");
+        
+        if (!gameOver)
+        {
+            playerRb.AddForce(Vector3.right * turnSpeed * HorizontalInput);
+        }
+
+        //This makes the player only jump once and when game is not over.
+        if (Input.GetKeyDown(KeyCode.Space) && isOnGround && !gameOver)
+        {
+            playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            isOnGround = false;
+        }
     }
 
     //For obstacles
@@ -65,10 +69,9 @@ public class PlayerController : MonoBehaviour
         {
             gameOver = false;
         }
-        else if (lives <= 0)
+        else if (lives == 0)
         {
             gameOver = true;
-            RemoveListeners();
         }
 
         if (collision.gameObject.CompareTag("Obstacle"))
@@ -87,7 +90,15 @@ public class PlayerController : MonoBehaviour
         //For jump powerup
         if (other.gameObject.CompareTag("Powerup Jump"))
         {
+            Debug.Log("Powerup collected!");
             Destroy(other.gameObject);
+
+            if (Input.GetKeyDown(KeyCode.Space) && !gameOver && isOnGround)
+            {
+                playerRb.AddForce(Vector3.up * jumpForce * 2, ForceMode.Impulse);
+
+                isOnGround = false;
+            }
         }
 
         //For heart
@@ -113,45 +124,5 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(other.gameObject);
         }
-    }
-
-    public void MoveLeft()
-    {
-        if (!gameOver)
-        {
-            playerRb.velocity = new Vector3(-turnSpeed, playerRb.velocity.y, playerRb.velocity.z);
-        }
-    }
-
-    public void MoveRight()
-    {
-        if (!gameOver)
-        {
-            playerRb.velocity = new Vector3(turnSpeed, playerRb.velocity.y, playerRb.velocity.z);
-        }
-    }
-
-    public void Jump()
-    {
-        if (!gameOver && isOnGround)
-        {
-            playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            isOnGround = false;
-        }
-    }
-
-    private IEnumerator ButtonCooldown(System.Action action, Button button)
-    {
-        button.interactable = false;
-        action();
-        yield return new WaitForSeconds(0.5f); // Adjust the cooldown duration as needed
-        button.interactable = true;
-    }
-
-    private void RemoveListeners()
-    {
-        leftButton.onClick.RemoveListener(MoveLeft);
-        rightButton.onClick.RemoveListener(MoveRight);
-        jumpButton.onClick.RemoveListener(Jump);
     }
 }
