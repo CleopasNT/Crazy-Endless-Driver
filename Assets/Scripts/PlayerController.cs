@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     public float turnSpeed = 12000;
     private int lives = 3;
     private bool jumpPowerupActive = false;
+    private bool invinciblePowerupActive = false;
+    public float flyHeight;
     private Rigidbody playerRb;
     private readonly float gravityModifier = 1;
     public bool isOnGround = true;
@@ -120,6 +122,17 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Powerup Invincible"))
         {
             Destroy(other.gameObject);
+
+            StartCoroutine(ApplyPowerup("Invincible", 10));
+
+            // Invincibility logic
+            if (invinciblePowerupActive == true && gameOver == false)
+            {
+                flyHeight = 6;
+                transform.position = new Vector3(transform.position.x, flyHeight, transform.position.z);
+
+                GetComponent<Rigidbody>().useGravity = false;
+            }
         }
 
         //For fireball powerup
@@ -142,7 +155,7 @@ public class PlayerController : MonoBehaviour
                 jumpPowerupActive = true;
                 break;
             case "Invincible":
-                // Activate invincibility logic
+                invinciblePowerupActive = true;
                 break;
             case "Fireball":
                 // Activate fireball powerup logic
@@ -159,7 +172,7 @@ public class PlayerController : MonoBehaviour
                 jumpPowerupActive = false;
                 break;
             case "Invincible":
-                // Deactivate invincibility logic
+                invinciblePowerupActive = false;
                 break;
             case "Fireball":
                 // Deactivate fireball powerup logic
