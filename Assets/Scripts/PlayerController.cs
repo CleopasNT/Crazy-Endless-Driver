@@ -11,9 +11,11 @@ public class PlayerController : MonoBehaviour
     public float xRange = 8;
     public float yRange = 0.54f;
     public float turnSpeed = 12000;
+    public GameObject projectilePrefab;
     private int lives = 3;
     private bool jumpPowerupActive = false;
     private bool invinciblePowerupActive = false;
+    private bool fireballPowerupActive = false;
     public float flyHeight;
     private Rigidbody playerRb;
     private readonly float gravityModifier = 1;
@@ -81,6 +83,12 @@ public class PlayerController : MonoBehaviour
         {
             GetComponent<Rigidbody>().useGravity = true;
         }
+
+        //Fireball logic
+        if (fireballPowerupActive == true && Input.GetKeyDown(KeyCode.E) && gameOver == false)
+        {
+            Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
+        }
     }
 
     //For obstacles
@@ -142,6 +150,8 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Powerup Fireball"))
         {
             Destroy(other.gameObject);
+
+            StartCoroutine(ApplyPowerup("Fireball", 15));
         }
     }
 
@@ -161,7 +171,7 @@ public class PlayerController : MonoBehaviour
                 invinciblePowerupActive = true;
                 break;
             case "Fireball":
-                // Activate fireball powerup logic
+                fireballPowerupActive = true;
                 break;
             default:
                 yield break;
@@ -178,7 +188,7 @@ public class PlayerController : MonoBehaviour
                 invinciblePowerupActive = false;
                 break;
             case "Fireball":
-                // Deactivate fireball powerup logic
+                fireballPowerupActive = false;
                 break;
         }
     }

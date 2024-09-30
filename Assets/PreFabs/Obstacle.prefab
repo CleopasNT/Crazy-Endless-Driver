@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4368246062782038342}
   - component: {fileID: 8238259772249621511}
   - component: {fileID: 1840781732262650429}
+  - component: {fileID: 4910356038954254948}
   m_Layer: 0
   m_Name: Obstacle
   m_TagString: Obstacle
@@ -148,3 +149,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1000
   zDestroy: 28
+--- !u!114 &4910356038954254948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8871933633340629198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18c077bb5eb416b44bb018b7a121156c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

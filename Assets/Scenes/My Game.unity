@@ -485,6 +485,7 @@ MonoBehaviour:
   xRange: 8
   yRange: 0.54
   turnSpeed: 15000
+  projectilePrefab: {fileID: 1879795393410765710, guid: 6a8ff891c6002b54b8d5425e4a8e7803, type: 3}
   flyHeight: 6
   isOnGround: 1
   gameOver: 0

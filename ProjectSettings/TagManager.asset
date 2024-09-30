@@ -13,6 +13,7 @@ TagManager:
   - Ground
   - Powerup Fireball
   - Event System
+  - Projectile
   layers:
   - Default
   - TransparentFX
