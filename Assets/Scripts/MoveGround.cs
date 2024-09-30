@@ -8,7 +8,7 @@ public class MoveGround : MonoBehaviour
     // Variables
     private Vector3 startPos;
     private float repeatWidth;
-    public float speed = 5.0f;
+    public float speed = 30;
     public float zDestroy = -30;
     public bool isDestroyed = false;
 
