@@ -69,6 +69,18 @@ public class PlayerController : MonoBehaviour
             }
             isOnGround = false;
         }
+        //Invinciblity logic
+        if (invinciblePowerupActive == true && gameOver == false)
+        {
+            flyHeight = 6;
+            transform.position = new Vector3(transform.position.x, flyHeight, transform.position.z);
+
+            GetComponent<Rigidbody>().useGravity = false;
+        }
+        else if (invinciblePowerupActive == false && gameOver == false)
+        {
+            GetComponent<Rigidbody>().useGravity = true;
+        }
     }
 
     //For obstacles
@@ -124,15 +136,6 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject);
 
             StartCoroutine(ApplyPowerup("Invincible", 10));
-
-            // Invincibility logic
-            if (invinciblePowerupActive == true && gameOver == false)
-            {
-                flyHeight = 6;
-                transform.position = new Vector3(transform.position.x, flyHeight, transform.position.z);
-
-                GetComponent<Rigidbody>().useGravity = false;
-            }
         }
 
         //For fireball powerup

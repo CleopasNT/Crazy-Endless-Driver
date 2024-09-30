@@ -183,63 +183,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &613905022
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2641663225906460421, guid: 610737bd2b7299a47af8e60de8512692, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.18
-      objectReference: {fileID: 0}
-    - target: {fileID: 2641663225906460421, guid: 610737bd2b7299a47af8e60de8512692, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2641663225906460421, guid: 610737bd2b7299a47af8e60de8512692, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -19.82
-      objectReference: {fileID: 0}
-    - target: {fileID: 2641663225906460421, guid: 610737bd2b7299a47af8e60de8512692, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2641663225906460421, guid: 610737bd2b7299a47af8e60de8512692, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2641663225906460421, guid: 610737bd2b7299a47af8e60de8512692, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2641663225906460421, guid: 610737bd2b7299a47af8e60de8512692, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2641663225906460421, guid: 610737bd2b7299a47af8e60de8512692, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2641663225906460421, guid: 610737bd2b7299a47af8e60de8512692, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2641663225906460421, guid: 610737bd2b7299a47af8e60de8512692, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3019707170072351447, guid: 610737bd2b7299a47af8e60de8512692, type: 3}
-      propertyPath: m_Name
-      value: Powerup Invincible
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 610737bd2b7299a47af8e60de8512692, type: 3}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -542,6 +485,7 @@ MonoBehaviour:
   xRange: 8
   yRange: 0.54
   turnSpeed: 15000
+  flyHeight: 6
   isOnGround: 1
   gameOver: 0
 --- !u!1 &963194225
@@ -1129,4 +1073,3 @@ SceneRoots:
   - {fileID: 2331291867102351880}
   - {fileID: 6908749376314334579}
   - {fileID: 6993290881150221660}
-  - {fileID: 613905022}
