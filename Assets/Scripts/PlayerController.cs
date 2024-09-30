@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody playerRb;
     private readonly float gravityModifier = 1;
     public bool isOnGround = true;
+
     //Game Over
     public bool gameOver = false;
 
@@ -52,7 +53,7 @@ public class PlayerController : MonoBehaviour
 
         //This moves the player left and right based on input
         float HorizontalInput = Input.GetAxis("Horizontal");
-        
+
         if (!gameOver)
         {
             playerRb.AddForce(Vector3.right * turnSpeed * HorizontalInput);
@@ -107,7 +108,10 @@ public class PlayerController : MonoBehaviour
         {
             lives -= 1;
 
-            Debug.Log("Player collided with obstacle. Should reduce player health by 1. Current health: " + lives);
+            Debug.Log(
+                "Player collided with obstacle. Should reduce player health by 1. Current health: "
+                    + lives
+            );
 
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
@@ -134,7 +138,10 @@ public class PlayerController : MonoBehaviour
             if (lives < 2)
             {
                 lives += 1;
-                Debug.Log("Player collided with heart. Should increase player health by 1. Current health: " + lives);
+                Debug.Log(
+                    "Player collided with heart. Should increase player health by 1. Current health: "
+                        + lives
+                );
             }
         }
 

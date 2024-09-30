@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class MoveGround : MonoBehaviour
 {
-
     // Variables
     private Vector3 startPos;
     private float repeatWidth;

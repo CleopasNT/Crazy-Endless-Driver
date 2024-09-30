@@ -5,17 +5,23 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-
     //Objects to spawn
     public GameObject[] obstacles;
     public GameObject jump;
     public GameObject heart;
     public GameObject invincible;
     public GameObject fireball;
+
     //Spawns objects in the right range
-    [SerializeField] private float zSpawn = 40;
-    [SerializeField] private float ySpawn = 0.6f;
-    [SerializeField] private float xSpawnRange = 7.5f;
+    [SerializeField]
+    private float zSpawn = 40;
+
+    [SerializeField]
+    private float ySpawn = 0.6f;
+
+    [SerializeField]
+    private float xSpawnRange = 7.5f;
+
     //Time in seconds between each spawn
     private readonly float jumpSpawnTime = 60f;
     private readonly float invicibleSpawnTime = 100.0f;
@@ -42,7 +48,11 @@ public class SpawnManager : MonoBehaviour
 
         Vector3 spawnPos = new Vector3(randomX, ySpawn, zSpawn);
 
-        Instantiate(obstacles[randomIndexObstacle], spawnPos, obstacles[randomIndexObstacle].gameObject.transform.rotation);
+        Instantiate(
+            obstacles[randomIndexObstacle],
+            spawnPos,
+            obstacles[randomIndexObstacle].gameObject.transform.rotation
+        );
     }
 
     //Spawns jump in the right range

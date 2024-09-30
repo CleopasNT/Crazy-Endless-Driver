@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class MoveDown : MonoBehaviour
 {
-
     public float speed = 5.0f;
     Rigidbody objectRb;
     public float zDestroy = 28;
