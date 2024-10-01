@@ -24,10 +24,10 @@ public class SpawnManager : MonoBehaviour
 
     //Time in seconds between each spawn
     private readonly float jumpSpawnTime = 60f;
-    private readonly float invicibleSpawnTime = 100.0f;
-    private readonly float heartSpawnTime = 40.0f;
-    private readonly float fireballSpawnTime = 20;
-    private readonly float obstaclesSpawnTime = 2.2f;
+    private readonly float invicibleSpawnTime = 200.0f;
+    private readonly float heartSpawnTime = 40;
+    private readonly float fireballSpawnTime = 100;
+    private readonly float obstaclesSpawnTime = 1.2f;
     private readonly float startDelay = 1.0f;
 
     // Start is called before the first frame update
