@@ -944,7 +944,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e40c11bc5116a84b87ea727baa34506, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 30
+  speed: 10
   zDestroy: -30
   isDestroyed: 0
   playerControllerScript: {fileID: 0}

@@ -135,7 +135,7 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(other.gameObject);
 
-            if (lives < 2)
+            if (lives < 3)
             {
                 lives += 1;
                 Debug.Log(
