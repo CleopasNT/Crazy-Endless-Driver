@@ -6,6 +6,8 @@
     "com.unity.ide.vscode": "1.2.5",
     "com.unity.inputsystem": "1.8.2",
     "com.unity.muse.chat": "1.1.1-pre.1",
+    "com.unity.muse.sprite": "1.1.1",
+    "com.unity.muse.texture": "1.1.1",
     "com.unity.render-pipelines.universal": "17.0.3",
     "com.unity.test-framework": "1.4.4",
     "com.unity.textmeshpro": "3.0.9",
