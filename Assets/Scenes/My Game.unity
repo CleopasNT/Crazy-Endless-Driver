@@ -26,14 +26,14 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 55126252545521f429612360a381570a, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
   m_HaloTexture: {fileID: 0}
   m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
   m_DefaultReflectionMode: 0
-  m_DefaultReflectionResolution: 128
+  m_DefaultReflectionResolution: 1024
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
@@ -770,6 +770,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Left Side
       objectReference: {fileID: 0}
+    - target: {fileID: 8937588977922563674, guid: 91d5c81147894cb49a9df3d1fea0df4d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -964,6 +968,10 @@ PrefabInstance:
     - target: {fileID: 8057784039013941646, guid: 4245fec21f85d78448cabd91abf9115b, type: 3}
       propertyPath: m_Name
       value: Right Side
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057784039013941646, guid: 4245fec21f85d78448cabd91abf9115b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
