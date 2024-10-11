@@ -21,6 +21,12 @@ public class PlayerController : MonoBehaviour
     private readonly float gravityModifier = 1;
     public bool isOnGround = true;
 
+    //UI
+    public Button leftButton;
+    public Button rightButton;
+    public Button jumpButton;
+    public Button projectButton;
+
     //Game Over
     public bool gameOver = false;
 
@@ -29,6 +35,11 @@ public class PlayerController : MonoBehaviour
     {
         playerRb = GetComponent<Rigidbody>();
         Physics.gravity *= gravityModifier;
+
+        leftButton.onClick.AddListener(MoveLeft);
+        rightButton.onClick.AddListener(MoveRight);
+        jumpButton.onClick.AddListener(() => Jump(1)); // Pass 1 as multiplier for normal jump
+        //projectButton.onClick.AddListener(Project);
     }
 
     // Update is called once per frame
@@ -90,6 +101,21 @@ public class PlayerController : MonoBehaviour
         {
             Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
         }
+    }
+
+    void MoveLeft()
+    {
+        playerRb.velocity = new Vector3(-turnSpeed * Time.deltaTime, playerRb.velocity.y);
+    }
+
+    void MoveRight()
+    {
+        playerRb.velocity = new Vector3(turnSpeed * Time.deltaTime, playerRb.velocity.y);
+    }
+
+    void Jump(int multiplier)
+    {
+        playerRb.AddForce(Vector3.up * jumpForce * multiplier, ForceMode.Impulse);
     }
 
     //For obstacles
@@ -160,11 +186,6 @@ public class PlayerController : MonoBehaviour
 
             StartCoroutine(ApplyPowerup("Fireball", 15));
         }
-    }
-
-    void Jump(int multiplier)
-    {
-        playerRb.AddForce(Vector3.up * jumpForce * multiplier, ForceMode.Impulse);
     }
 
     private IEnumerator ApplyPowerup(string powerupType, float duration, float multiplier = 1)
