@@ -105,12 +105,12 @@ public class PlayerController : MonoBehaviour
 
     void MoveLeft()
     {
-        playerRb.velocity = new Vector3(-turnSpeed * Time.deltaTime, playerRb.velocity.y);
+        playerRb.linearVelocity = new Vector3(-turnSpeed * Time.deltaTime, playerRb.linearVelocity.y);
     }
 
     void MoveRight()
     {
-        playerRb.velocity = new Vector3(turnSpeed * Time.deltaTime, playerRb.velocity.y);
+        playerRb.linearVelocity = new Vector3(turnSpeed * Time.deltaTime, playerRb.linearVelocity.y);
     }
 
     void Jump(int multiplier)
