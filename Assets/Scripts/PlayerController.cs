@@ -21,14 +21,18 @@ public class PlayerController : MonoBehaviour
     private readonly float gravityModifier = 1;
     public bool isOnGround = true;
 
-    //UI
+    // UI
     public Button leftButton;
     public Button rightButton;
     public Button jumpButton;
     public Button projectButton;
 
-    //Game Over
+    // Game Over
     public bool gameOver = false;
+
+    // Movement state
+    private bool isMovingLeft = false;
+    private bool isMovingRight = false;
 
     // Start is called before the first frame update
     void Start()
@@ -36,16 +40,46 @@ public class PlayerController : MonoBehaviour
         playerRb = GetComponent<Rigidbody>();
         Physics.gravity *= gravityModifier;
 
-        leftButton.onClick.AddListener(MoveLeft);
-        rightButton.onClick.AddListener(MoveRight);
-        jumpButton.onClick.AddListener(() => Jump(1)); // Pass 1 as multiplier for normal jump
-        //projectButton.onClick.AddListener(Project);
+        leftButton.onClick.AddListener(() => { isMovingLeft = true; });
+        rightButton.onClick.AddListener(() => { isMovingRight = true; });
+        jumpButton.onClick.AddListener(JumpButtonPressed); // Change to a new method for jumping
+        // projectButton.onClick.AddListener(Project);
+
+        // Add listeners for button release
+        leftButton.onClick.AddListener(OnLeftButtonReleased);
+        rightButton.onClick.AddListener(OnRightButtonReleased);
+    }
+
+    private void JumpButtonPressed()
+    {
+        if (isOnGround && !gameOver)
+        {
+            if (jumpPowerupActive)
+            {
+                Jump(2); // Jump with powerup multiplier
+            }
+            else
+            {
+                Jump(1); // Normal jump
+            }
+            isOnGround = false; // Set to false immediately after jumping
+        }
+    }
+
+    void OnLeftButtonReleased()
+    {
+        isMovingLeft = false;
+    }
+
+    void OnRightButtonReleased()
+    {
+        isMovingRight = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Keeps the player in bounds
+        // Keeps the player in bounds
         if (transform.position.x < -xRange)
         {
             transform.position = new Vector3(-xRange, transform.position.y, transform.position.z);
@@ -61,17 +95,27 @@ public class PlayerController : MonoBehaviour
         {
             isOnGround = true;
         }
-
-        //This moves the player left and right based on input
-        float HorizontalInput = Input.GetAxis("Horizontal");
-
-        if (!gameOver)
+        else
         {
-            playerRb.AddForce(Vector3.right * turnSpeed * HorizontalInput);
+            isOnGround = false; // Reset to false when not on the ground
         }
 
-        //This makes the player only jump once and when game is not over.
-        if (Input.GetKeyDown(KeyCode.Space) && isOnGround && !gameOver)
+        // This moves the player left and right based on button presses
+        if (!gameOver)
+        {
+            if (isMovingLeft)
+            {
+                playerRb.AddForce(Vector3.left * turnSpeed * Time.deltaTime);
+            }
+
+            if (isMovingRight)
+            {
+                playerRb.AddForce(Vector3.right * turnSpeed * Time.deltaTime);
+            }
+        }
+
+        // Jumping logic
+        /*if (Input.GetKeyDown(KeyCode.Space) && isOnGround && !gameOver)
         {
             if (jumpPowerupActive)
             {
@@ -82,35 +126,25 @@ public class PlayerController : MonoBehaviour
                 Jump(1); // Normal jump
             }
             isOnGround = false;
-        }
-        //Invinciblity logic
-        if (invinciblePowerupActive == true && gameOver == false)
+        }*/
+
+        // Invincibility logic
+        if (invinciblePowerupActive && !gameOver)
         {
             flyHeight = 6;
             transform.position = new Vector3(transform.position.x, flyHeight, transform.position.z);
-
-            GetComponent<Rigidbody>().useGravity = false;
+            playerRb.useGravity = false;
         }
-        else if (invinciblePowerupActive == false && gameOver == false)
+        else if (!invinciblePowerupActive && !gameOver)
         {
-            GetComponent<Rigidbody>().useGravity = true;
+            playerRb.useGravity = true;
         }
 
-        //Fireball logic
-        if (fireballPowerupActive == true && Input.GetKeyDown(KeyCode.E) && gameOver == false)
+        // Fireball logic
+        if (fireballPowerupActive && Input.GetKeyDown(KeyCode.E) && !gameOver)
         {
             Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
         }
-    }
-
-    void MoveLeft()
-    {
-        playerRb.linearVelocity = new Vector3(-turnSpeed * Time.deltaTime, playerRb.linearVelocity.y);
-    }
-
-    void MoveRight()
-    {
-        playerRb.linearVelocity = new Vector3(turnSpeed * Time.deltaTime, playerRb.linearVelocity.y);
     }
 
     void Jump(int multiplier)
@@ -118,7 +152,7 @@ public class PlayerController : MonoBehaviour
         playerRb.AddForce(Vector3.up * jumpForce * multiplier, ForceMode.Impulse);
     }
 
-    //For obstacles
+    // For obstacles
     private void OnCollisionEnter(Collision collision)
     {
         if (lives > 0)
@@ -133,57 +167,44 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Obstacle"))
         {
             lives -= 1;
-
-            Debug.Log(
-                "Player collided with obstacle. Should reduce player health by 1. Current health: "
-                    + lives
-            );
-
+            Debug.Log("Player collided with obstacle. Current health: " + lives);
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
     }
 
-    //For powerups
+    // For powerups
     private void OnTriggerEnter(Collider other)
     {
-        //For jump powerup
+        // For jump powerup
         if (other.gameObject.CompareTag("Powerup Jump"))
         {
             Destroy(other.gameObject);
-
             jumpPowerupActive = true;
-
             StartCoroutine(ApplyPowerup("Jump", 15, 2));
         }
 
-        //For heart
+        // For heart
         if (other.gameObject.CompareTag("Heart"))
         {
             Destroy(other.gameObject);
-
             if (lives < 3)
             {
                 lives += 1;
-                Debug.Log(
-                    "Player collided with heart. Should increase player health by 1. Current health: "
-                        + lives
-                );
+                Debug.Log("Player collided with heart. Current health: " + lives);
             }
         }
 
-        //For invicible powerup
+        // For invincible powerup
         if (other.gameObject.CompareTag("Powerup Invincible"))
         {
             Destroy(other.gameObject);
-
             StartCoroutine(ApplyPowerup("Invincible", 10));
         }
 
-        //For fireball powerup
+        // For fireball powerup
         if (other.gameObject.CompareTag("Powerup Fireball"))
         {
             Destroy(other.gameObject);
-
             StartCoroutine(ApplyPowerup("Fireball", 15));
         }
     }
